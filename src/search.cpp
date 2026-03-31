@@ -1111,8 +1111,10 @@ moves_loop:  // When in check, search starts here
 
                 history += 71 * mainHistory[us][move.raw()] / 32;
 
+                // Candidate test: slightly lower divisor to make history-driven
+                // LMR adjustments more responsive for improving move ordering.
                 // (*Scaler): Generally, lower divisors scales well
-                lmrDepth += history / 2995;
+                lmrDepth += history / 2944;
 
                 Value futilityValue = ss->staticEval + 42 + 151 * !bestMove + 120 * lmrDepth
                                     + 86 * (ss->staticEval > alpha);
