@@ -105,7 +105,9 @@ void update_correction_history(const Position& pos,
     const Move  m  = (ss - 1)->currentMove;
     const Color us = pos.side_to_move();
 
-    constexpr int nonPawnWeight = 187;
+    // Test idea: slightly increase non-pawn correction-history impact.
+    // This is intended for a single-idea fishtest run.
+    constexpr int nonPawnWeight = 192;
     auto&         shared        = workerThread.sharedHistory;
 
     shared.pawn_correction_entry(pos).at(us).pawn << bonus;
